@@ -1,0 +1,7 @@
+{
+  "name": "inmunolab",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

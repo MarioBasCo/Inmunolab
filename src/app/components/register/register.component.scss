@@ -1,0 +1,35 @@
+ion-list {
+    background: transparent;
+    transform: translateY(2vh);
+    color: black;
+
+    ion-item {
+        border: 1px solid var(--ion-color-dark);
+        border-radius: 10px;
+    }
+
+    ion-button {
+        width: 30vh;
+        margin: auto;
+    }
+
+    .alignItems {
+
+        ion-checkbox,
+        ion-note {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        ion-checkbox {
+            margin-right: 1vw;
+            --size: 1.1rem;
+        }
+    }
+
+    ion-col {
+        ion-note {
+            font-size: 0.85rem;
+        }
+    }
+}

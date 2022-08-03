@@ -24,3 +24,24 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Finlandica&display=swap');
+
+* {
+    font-family: 'Finlandica', sans-serif;
+}
+
+/* Clases ionicas globales para los modales */
+.small-modal{
+    --ion-background-color: #F5F5F5;
+    --max-height: 75%;
+    --max-width: 85%;
+    --width: 90%;
+    --height: 80%;
+
+    --border-radius: 20px;
+
+    /* --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4); */
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+}

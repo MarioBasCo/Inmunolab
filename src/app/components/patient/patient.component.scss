@@ -1,0 +1,23 @@
+.btn-ced {
+    height: 60px;
+    width: 60px;
+    font-size: 20px;
+    font-weight: 700;
+    --border-radius: 50%;
+    --background: #03658C;
+}
+
+.txt-ced {
+    border: 1px solid black;
+}
+
+.mess {
+    width: 100%;
+
+    ion-input {
+        border: 1px solid var(--ion-color-primary) !important;
+        height: 50px;
+        border-radius: 10px;
+        --padding-start: 10px;
+    }
+}

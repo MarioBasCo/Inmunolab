@@ -1,0 +1,117 @@
+<h3 class="ion-text-center">Paciente</h3>
+<ion-item color="transparent" lines="none">
+  <p>
+    <strong>Nombre: </strong>{{paciente?.pa_nombres + " " + paciente?.pa_apellidos }}<br>
+    <strong>Cédula: </strong>{{paciente?.pa_cedula}}
+  </p>
+</ion-item>
+
+<h3 class="ion-text-center">Registro de altura y pulso</h3>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Conexión a Sensores</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p class="ion-text-center">Medidor de Pulso</p>
+    <ion-item lines="none">
+      <ion-label class="ion-text-center"><b>{{pulso}}</b></ion-label>
+      <ion-label slot="end">LPM</ion-label>
+    </ion-item>
+    <p class="ion-text-center">Medidor de Altura</p>
+
+    <ion-item lines="none">
+      <ion-label class="ion-text-center"><b>{{altura}}</b></ion-label>
+      <ion-label slot="end">CM</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Observaciones</ion-label>
+      <ion-textarea [(ngModel)]="observacion" name="observacion"></ion-textarea>
+    </ion-item>
+
+    <ion-grid style="width: 100%;">
+      <ion-row>
+        <ion-col size="12">
+          <ion-row style="width: 100%;">
+            <ion-col>
+              <div class="ion-text-start">
+                <ion-label>Bluetooth</ion-label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="ion-text-end">
+                <ion-toggle [(ngModel)]="bleStatus" disabled="true" color="secondary"></ion-toggle>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-row style="width: 100%;">
+            <ion-col>
+              <div class="ion-text-start">
+                <ion-label class="ion-text-justify">Conexión de Sensores</ion-label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="ion-text-end">
+                <ion-badge slot="end" *ngIf="!bluetoothIsScanning" color="danger">Desconectado</ion-badge>
+                <ion-badge slot="end" *ngIf="bluetoothIsScanning" color="success">Conectado</ion-badge>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-row>
+      <ion-col size="4">
+        <ion-button expand="block" color="primary" (click)="leerDatos()" [disabled]="!bluetoothIsScanning">
+          <ion-icon name="pause"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button expand="block" color="secondary" (click)="scan()" [disabled]="!bluetoothIsScanning">
+          <ion-icon name="play"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button expand="block" color="tertiary" (click)="reconectar()"
+          [disabled]="!bluetoothIsScanning && !bleStatus">
+          <ion-icon name="bluetooth"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
+
+<h3 class="ion-text-center">Registro de examenes</h3>
+<ion-card>
+  <ion-card-content>
+    <ion-list>
+      <ion-item *ngFor="let exam of tipos" lines="full">
+        <ion-label>{{exam.detalle_exam}}</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="exam.estado"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+
+<ion-grid>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="6">
+      <ion-button expand="block" (click)="guardar()">
+        <ion-icon name="save" slot="start"></ion-icon>
+        <ion-label>GUARDAR</ion-label>
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-button expand="block" color="danger" (click)="cancelar()">
+        <ion-icon name="close" slot="start"></ion-icon>
+        <ion-label>CANCELAR</ion-label>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

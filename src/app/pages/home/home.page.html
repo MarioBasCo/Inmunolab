@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+  <div [ngSwitch]="type">
+    <div *ngSwitchCase="'body'">
+      <app-patient></app-patient>
+    </div>
+
+    <div *ngSwitchCase="'fitness'">
+      <app-vital-signs></app-vital-signs>
+    </div>
+
+    <div *ngSwitchCase="'person'">
+      <app-user></app-user>
+    </div>
+  </div>
+</ion-content>

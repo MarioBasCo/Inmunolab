@@ -1,0 +1,29 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <h1>InmunolaB</h1>
+    <ion-buttons slot="end" (click)="cerrarSesion()">
+      <div class="user">
+        <ion-icon name="exit-outline" size="small" class="ion-margin-end" slot="icon-only" color="light"></ion-icon>
+        <small>{{user.usu_nombres + " " + user.usu_apellidos}}</small>
+      </div>
+
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="menu">
+    <ion-segment scrollable mode="md" [value]="type" [(ngModel)]="type" ngDefaultControl
+      (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="body" layout="icon-start" id="segment-body">
+        <ion-label>PACIENTE</ion-label>
+        <ion-icon name="body-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="fitness" layout="icon-start" [disabled]="activarSegment()" id="segment-fitness">
+        <ion-label>MEDIDAS</ion-label>
+        <ion-icon name="fitness-outline"></ion-icon>
+      </ion-segment-button>
+      <!-- <ion-segment-button value="person" layout="icon-start">
+        <ion-label>USUARIO</ion-label>
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-segment-button> -->
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>

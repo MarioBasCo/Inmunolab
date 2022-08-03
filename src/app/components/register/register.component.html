@@ -1,0 +1,119 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons (click)="dismiss()" slot="end">
+      <ion-button>
+        <ion-icon size="large" color="danger" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Registro de Paciente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true">
+  <div class="ion-padding-start ion-padding-end">
+    <h3>Datos Personales</h3>
+    <div class="ion-padding-start ion-padding-end">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <ion-list lines="none" class="ion-text-center">
+          <div class="ion-margin-vertical">
+            <ion-item lines="none" color="transparent">
+              <ion-input inputmode="numeric" formControlName="identificacion" [maxlength]="10"
+                placeholder="Número de cedula">
+              </ion-input>
+            </ion-item>
+            <ion-note class="ion-text-left" color="danger"
+              *ngIf="form.get('identificacion')?.hasError('required') && form?.get('identificacion').touched">
+              <p class="error">*Por favor ingrese el número de cedula</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('identificacion')?.hasError('minlength')">
+              <p class="error">*Se requiere de al menos de 10 dígitos</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('identificacion')?.hasError('pattern')">
+              <p class="error">*No se aceptan letras</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('identificacion')?.hasError('isEcuadorian')">
+              <p class="error">*Número de cedula inválido</p>
+            </ion-note>
+          </div>
+
+          <div class="ion-margin-vertical">
+            <ion-item lines="none" color="transparent">
+              <ion-input formControlName="nombres" placeholder="Nombres">
+              </ion-input>
+            </ion-item>
+            <ion-note class="ion-text-left" color="danger"
+              *ngIf="form.get('nombres')?.hasError('required') && form?.get('nombres').touched">
+              <p class="error">*Por favor ingrese los nombres</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('nombres')?.hasError('minlength')">
+              <p class="error">*Se requieren al menos 2 carácteres</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('nombres')?.hasError('maxlength')">
+              <p class="error">*El número de letras excede el requerido</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('nombres')?.hasError('pattern')">
+              <p class="error">*No se aceptan números o carácteres especiales</p>
+            </ion-note>
+          </div>
+
+          <div class="ion-margin-vertical">
+            <ion-item lines="none" color="transparent">
+              <ion-input formControlName="apellidos" placeholder="Apellidos">
+              </ion-input>
+            </ion-item>
+            <ion-note class="ion-text-left" color="danger"
+              *ngIf="form.get('apellidos')?.hasError('required') && form.get('apellidos').touched">
+              <p class="error">*Por favor ingrese los apellidos</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('apellidos')?.hasError('minlength')">
+              <p class="error">*Se requieren al menos 2 carácteres</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('apellidos')?.hasError('maxlength')">
+              <p class="error">*El número de letras excede el requerido</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('apellidos_pat')?.hasError('pattern')">
+              <p class="error">*No se aceptan números o carácteres especiales</p>
+            </ion-note>
+          </div>
+
+          <div class="ion-margin-vertical">
+            <ion-item lines="none" color="transparent">
+              <ion-input type="email" inputmode="email" formControlName="correo" placeholder="Correo electronico">
+              </ion-input>
+            </ion-item>
+            <ion-note class="ion-text-left" color="danger"
+              *ngIf="form.get('correo')?.hasError('required') && form?.get('correo').touched">
+              <p class="error">*Por favor ingrese el correo</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger"
+              *ngIf="form.get('correo')?.hasError('email') || form?.get('correo')?.hasError('pattern')">
+              <p class="error">*No parece un correo valido</p>
+            </ion-note>
+          </div>
+
+          <div class="ion-margin-vertical">
+            <ion-item lines="none" color="transparent">
+              <ion-input formControlName="direccion" placeholder="Dirección">
+              </ion-input>
+            </ion-item>
+            <ion-note class="ion-text-left" color="danger"
+              *ngIf="form.get('direccion')?.hasError('required') && form?.get('direccion').touched">
+              <p class="error">*Por favor ingrese la dirección</p>
+            </ion-note>
+            <ion-note class="ion-text-left" color="danger" *ngIf="form?.get('direccion')?.hasError('maxlength')">
+              <p class="error">*El número de letras excede el requerido</p>
+            </ion-note>
+          </div>
+
+          <ion-row>
+            <ion-button type="submit" color="secondary" mode="ios" shape="round" [disabled]="form.invalid">GUARDAR
+            </ion-button>
+          </ion-row>
+
+        </ion-list>
+      </form>
+
+    </div>
+  </div>
+
+</ion-content>

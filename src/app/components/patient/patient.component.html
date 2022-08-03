@@ -1,0 +1,78 @@
+<div class="container">
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" class="search">
+        <ion-item lines="none" class="mess" color="transparent">
+          <ion-input mode="ios" enterkeyhint="search" inputmode="numeric" maxlength="10" (keypress)="numberOnly($event)" ngDefaultControl (keyup.enter)="buscar()" placeholder="Digite el número de cédula" name="textBusqueda"
+            [(ngModel)]="textBusqueda" (ionChange)="reset()"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-end ion-margin-end">
+      <ion-col size="auto">
+        <ion-button color="success" mode="ios" fill="outline" (click)="buscar()">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" mode="ios" fill="outline" (click)="limpiar()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="showPlaceholder">
+    <h3 class="ion-text-center">Datos del Paciente</h3>
+    <ion-card>
+      <ion-card-content>
+        <ion-item lines="none" color="transparent">
+          <ion-label>
+            <h2><ion-skeleton-text animated style="width: 90%; height: 16px;"></ion-skeleton-text></h2>
+            <h3><ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text></h3>
+            <h3><ion-skeleton-text animated style="width: 35%;"></ion-skeleton-text></h3>
+            <h3><ion-skeleton-text animated style="width: 55%;"></ion-skeleton-text></h3>
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="loaded">
+    <h3 class="ion-text-center">Datos del Paciente</h3>
+    <ion-card *ngIf="message.length > 0">
+      <ion-card-content>
+        <ion-item lines="none" class="ion-margin" color="transparent">
+          <ion-row class="ion-justify-content-center">
+            <ion-text color="danger" class="ion-text-justify">
+              <strong>No se encontraron resultados que coincidan con la búsqueda</strong>
+            </ion-text>
+          </ion-row>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="paciente">
+      <ion-card-content>
+        <ion-item lines="none" color="transparent">
+          <ion-label>
+            <h2><strong>{{ paciente.pa_nombres + " " + paciente.pa_apellidos }}</strong> </h2>
+            <h3><strong>Cédula: </strong> {{ paciente.pa_cedula }}</h3>
+            <h3><strong>Correo: </strong> {{ paciente.pa_correo }}</h3>
+            <h3><strong>Dirección: </strong> {{ paciente.pa_direccion }}</h3>
+          </ion-label>
+        </ion-item>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="6">
+              <ion-button (click)="seleccionar(paciente)">SELECCIONAR</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" class="ion-padding-bottom ion-margin-bottom">
+    <ion-fab-button color="black"  (click)="abrirModalRegistro()">
+      <ion-icon name="person-add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</div>
